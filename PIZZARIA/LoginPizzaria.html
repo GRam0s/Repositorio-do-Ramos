@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ramos Pizzaria - Login</title>
+    <link rel="stylesheet" href="Pizzaria.css">
+</head>
+<body class="auth-page">
+    <div class="login-container">
+        <div class="login-card">
+            <div class="login-header">
+                <h1>Ramos Pizzaria</h1>
+                <p>Faça login para continuar</p>
+            </div>
+            
+            <div class="login-form">
+                <div class="form-group">
+                    <div class="input-icon">
+                        <img src="Usuario.png" alt="Ícone de Usuário" class="icon">
+                        <input type="text" id="usuario" placeholder="Digite seu usuário">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="input-icon">
+                        <img src="Senha.png" alt="Ícone de Senha" class="icon">
+                        <input type="password" id="senha" placeholder="Digite sua senha">
+                    </div>
+                    <p id="mensagemerro" class="error-message hidden">Usuário ou senha incorretos!</p>
+                </div>
+                
+                <div class="login-buttons">
+                    <button class="btn-login" onclick="validarLogin()">
+                        <span>Entrar</span>
+                    </button>
+                    
+                    <div class="secondary-buttons">
+                        <a href="CadastroPizzaria.html" class="btn-secondary">Criar nova conta</a>
+                        <a href="PizzariaMenu.html" class="btn-secondary">Voltar ao menu</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="Pizzaria.js"></script>
+</body>
+</html>

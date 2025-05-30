@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ramos Pizzaria</title>
+    <link rel="stylesheet" href="Pizzaria.css">
+</head>
+<body class="menu-page">
+    <header class="main-header">
+        <div class="logo-container">
+            <h1>Ramos Pizzaria</h1>
+            <p class="tagline">Sabor e qualidade em cada fatia</p>
+        </div>
+        
+        <div class="auth-buttons">
+            <a href="LoginPizzaria.html" class="auth-btn login-btn">
+                <img src="Usuario.png" alt="Login" class="auth-icon">
+                <span>Login</span>
+            </a>
+            <a href="CadastroPizzaria.html" class="auth-btn register-btn">
+                <img src="Usuario.png" alt="Cadastro" class="auth-icon">
+                <span>Cadastre-se</span>
+            </a>
+        </div>
+    </header>
+
+    <nav class="main-nav">
+        <button onclick="mostrarSecao('cardapio')" class="nav-button active">Cardápio</button>
+        <button onclick="mostrarSecao('sobre')" class="nav-button">Nossa História</button>
+        <button onclick="mostrarSecao('pedidos')" class="nav-button">Fazer Pedido</button>
+        <button onclick="mostrarSecao('cadastrarProduto')" class="nav-button">Cadastrar Produto</button>
+        <button onclick="mostrarSecao('alterarProduto')" class="nav-button">Alterar Produto</button>
+    </nav>
+
+    <main class="content-area">
+        <div id="registro" class="section-card hidden">
+            <h2 class="section-title">Registrar-se</h2>
+            <div class="form-content">
+                <div class="input-icon">
+                    <img src="Usuario.png" alt="Ícone de Usuário" class="icon">
+                    <input type="text" id="nome" placeholder="Usuário">
+                </div>
+                <div class="input-icon">
+                    <img src="Senha.png" alt="Ícone de Senha" class="icon">
+                    <input type="password" id="senha" placeholder="Senha">
+                </div>
+                <div class="input-icon">
+                    <img src="Senha.png" alt="Ícone de Senha" class="icon">
+                    <input type="password" id="senha-confirmar" placeholder="Confirmar Senha">
+                </div>
+                <button onclick="registrarUsuario()" class="action-button">Registrar-se</button>
+                <p id="mensagem-sucesso-cadastro" class="success-message hidden"></p>
+                <p id="mensagem-erro-cadastro" class="error-message hidden"></p>
+            </div>
+        </div>
+
+        <div id="cadastrarProduto" class="section-card hidden">
+            <h2 class="section-title">Cadastrar Produto</h2>
+            <div class="form-content">
+                <select id="categoriaProduto" class="styled-select">
+                    <option value="comum">Pizza Comum</option>
+                    <option value="doce">Pizza Doce</option>
+                    <option value="bebida">Bebida</option>
+                </select>
+                <input type="text" id="nomeProduto" placeholder="Nome do Produto">
+                <input type="text" id="ingredientes" placeholder="Ingredientes/Descrição">
+                <input type="number" id="preco" placeholder="Preço">
+                <button onclick="cadastrarProduto()" class="action-button">Cadastrar Produto</button>
+                <p id="sucessoCadastroProduto" class="success-message hidden"></p>
+                <p id="erroCadastroProduto" class="error-message hidden"></p>
+            </div>
+        </div>
+
+        <div id="cardapio" class="section-card">
+            <h2 class="section-title">Nosso Cardápio</h2>
+            <div class="tab-container">
+                <div class="tab">
+                    <button class="tablinks active" onclick="mostrarCategoria(event, 'comuns')">Pizzas Comuns</button>
+                    <button class="tablinks" onclick="mostrarCategoria(event, 'doces')">Pizzas Doces</button>
+                    <button class="tablinks" onclick="mostrarCategoria(event, 'bebidas')">Bebidas</button>
+                </div>
+
+                <div id="comuns" class="tabcontent" style="display: block;">
+                    <h3 class="category-title">Pizzas Comuns</h3>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Pizza</th>
+                                    <th>Ingredientes</th>
+                                    <th>Preço</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabela-pizzas-comuns"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div id="doces" class="tabcontent">
+                    <h3 class="category-title">Pizzas Doces</h3>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Pizza Doce</th>
+                                    <th>Ingredientes</th>
+                                    <th>Preço</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabela-pizzas-doces"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div id="bebidas" class="tabcontent">
+                    <h3 class="category-title">Bebidas</h3>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Bebida</th>
+                                    <th>Descrição</th>
+                                    <th>Preço</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabela-bebidas"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="alterarProduto" class="section-card hidden">
+            <h2 class="section-title">Alterar Produto</h2>
+            <div class="form-content">
+                <input type="text" id="busca-alterar" placeholder="Buscar por nome do produto" oninput="buscarProdutosParaAlterar()">
+                <div id="form-alterar" class="hidden">
+                    <select id="categoria-alterar" class="styled-select">
+                        <option value="comum">Pizza Comum</option>
+                        <option value="doce">Pizza Doce</option>
+                        <option value="bebida">Bebida</option>
+                    </select>
+                    <input type="text" id="nome-alterar" placeholder="Alterar Nome do Produto">
+                    <input type="text" id="ingredientes-alterar" placeholder="Novos Ingredientes/Descrição">
+                    <input type="number" id="preco-alterar" placeholder="Novo Preço">
+                    <button onclick="alterarProduto()" class="action-button">Salvar Alterações</button>
+                    <p id="mensagem-alterar-produto-sucesso" class="success-message hidden"></p>
+                    <p id="mensagem-alterar-produto-erro" class="error-message hidden"></p>
+                </div>
+            </div>
+        </div>
+
+        <div id="sobre" class="section-card hidden">
+            <h2 class="section-title">Nossa História</h2>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="FundoPizzaria.png" alt="Nossa Pizzaria" class="about-img">
+                </div>
+                <div class="about-text">
+                    <p>Bem-vindo à Ramos Pizzaria! Nossa história começou com a paixão por criar pizzas deliciosas e únicas.</p>
+                    <p>Fundada em 2020, nossa missão é oferecer as melhores pizzas da região, com ingredientes frescos e receitas exclusivas.</p>
+                    <p>Cada pizza é preparada com carinho e atenção aos detalhes, garantindo uma experiência gastronômica inesquecível.</p>
+                    <p>Venha nos conhecer e experimentar nossas deliciosas criações!</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="pedidos" class="section-card hidden">
+            <h2 class="section-title">Fazer Pedido</h2>
+            <div class="form-content">
+                <select id="pedido-produto-select" class="styled-select">
+                    <option value="" disabled selected>-- Selecione um Produto --</option>
+                </select>
+                <input type="text" id="pedido-comprador" placeholder="Nome do Comprador">
+                <button onclick="fazerPedido()" class="action-button">Realizar Pedido</button>
+                <p id="mensagem-pedido-sucesso" class="success-message hidden"></p>
+                <p id="mensagem-pedido-erro" class="error-message hidden"></p>
+            </div>
+
+            <h2 class="section-title">Relatório de Vendas</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Produto</th>
+                            <th>Preço</th>
+                            <th>Comprador</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabela-pedidos"></tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2025 Ramos Pizzaria - Todos os direitos reservados</p>
+    </footer>
+    
+    <script src="Pizzaria.js"></script>
+</body>
+</html>
