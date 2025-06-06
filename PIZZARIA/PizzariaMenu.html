@@ -34,27 +34,8 @@
     </nav>
 
     <main class="content-area">
-        <div id="registro" class="section-card hidden">
-            <h2 class="section-title">Registrar-se</h2>
-            <div class="form-content">
-                <div class="input-icon">
-                    <img src="Usuario.png" alt="Ícone de Usuário" class="icon">
-                    <input type="text" id="nome" placeholder="Usuário">
-                </div>
-                <div class="input-icon">
-                    <img src="Senha.png" alt="Ícone de Senha" class="icon">
-                    <input type="password" id="senha" placeholder="Senha">
-                </div>
-                <div class="input-icon">
-                    <img src="Senha.png" alt="Ícone de Senha" class="icon">
-                    <input type="password" id="senha-confirmar" placeholder="Confirmar Senha">
-                </div>
-                <button onclick="registrarUsuario()" class="action-button">Registrar-se</button>
-                <p id="mensagem-sucesso-cadastro" class="success-message hidden"></p>
-                <p id="mensagem-erro-cadastro" class="error-message hidden"></p>
-            </div>
-        </div>
 
+        <!-- Seção: Cadastrar Produto -->
         <div id="cadastrarProduto" class="section-card hidden">
             <h2 class="section-title">Cadastrar Produto</h2>
             <div class="form-content">
@@ -72,6 +53,7 @@
             </div>
         </div>
 
+        <!-- Seção: Cardápio -->
         <div id="cardapio" class="section-card">
             <h2 class="section-title">Nosso Cardápio</h2>
             <div class="tab-container">
@@ -131,6 +113,7 @@
             </div>
         </div>
 
+        <!-- Seção: Alterar Produto -->
         <div id="alterarProduto" class="section-card hidden">
             <h2 class="section-title">Alterar Produto</h2>
             <div class="form-content">
@@ -151,6 +134,7 @@
             </div>
         </div>
 
+        <!-- Seção: Nossa História -->
         <div id="sobre" class="section-card hidden">
             <h2 class="section-title">Nossa História</h2>
             <div class="about-content">
@@ -166,6 +150,7 @@
             </div>
         </div>
 
+        <!-- Seção: Pedidos + Relatório -->
         <div id="pedidos" class="section-card hidden">
             <h2 class="section-title">Fazer Pedido</h2>
             <div class="form-content">
@@ -191,13 +176,19 @@
                     <tbody id="tabela-pedidos"></tbody>
                 </table>
             </div>
+
+            <!-- Total de vendas -->
+            <div class="total-vendas" style="margin-top: 20px; font-weight: bold; font-size: 18px;">
+                Total de Vendas: <span id="valor-total-vendas">R$ 0,00</span>
+            </div>
         </div>
+
     </main>
 
     <footer class="site-footer">
         <p>&copy; 2025 Ramos Pizzaria - Todos os direitos reservados</p>
     </footer>
-    
+
     <script src="Pizzaria.js"></script>
 </body>
 </html>
